@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="static/style.css"> 
+     <!-- add icon link -->
+     <!--<link rel = "icon" type = "image/x-icon" href ="static/logo_tr.png">-->  
+    <title>Breast Cancer Prediction Model</title>
+    <meta charset="utf-8" name="viewport" 
+    content= "width=device-width, initial-scale=1.0">
+    <!-- <style>
+      div {
+        background-image: url('static/bg.png');
+      }
+      </style> -->
+  </head>
+  
+  <body>
+    <div class="container_main">
+      <div class="sub_container" id="holder">
+          <table>
+            <tr>
+            <td><center><h1 class='main_heading'>Breast Cancer Prediction Model</h1></center></td>
+          </tr>
+        </table>
+        <hr style="height:3px;border-width:0;color:orange;background-color:orange">
+        <p>RFE-ANN model is developed based on 15 features that classify whether the breast cancer is benign or malignant.For classifying the patient, users are requested to submit their data on this following form as per the value range provided in the input placeholder.
+        <b>[Note: For predicted value, please check the footer of the table.]</b></p>
+        <table class="t1">
+        <form class="form-horizontal" action="{{ url_for('predict')}}" method="post">
+          <div class="form-group">
+            <div class="col-sm-10">
+                <thead>
+                  <tr><th colspan="2"><b><h4>Submission Form </h4></b></th></tr>
+                </thead>
+                <tfoot>
+                  <tr><th colspan="2"><center><b><h4>{{ prediction_text}}</h4></b></center></th></tr>
+                </tfoot>
+                 <tr><td><label for = "texture_mean">Texture Mean:</label></td>
+                  <td>          
+                    <span>
+                      <input  class="form-control" type= "text" name="texture_mean" placeholder="Value range: 9.71 - 39.28" required="required" />
+                    </span>
+                </td></tr>
+        </div>
+      </div>
+     
+      <div class="form-group">
+        <div class="col-sm-10">
+          <tr><td><label for = "area_mean">Area Mean:</label></td>
+            <td>
+          <span><input  class="form-control" type="text" name="area_mean" placeholder="Value range: 143.50 - 2501.00" required="required" /></span>
+          </td></tr>
+        </div>
+      </div>
+
+      
+      <div class="form-group">
+        <div class="col-sm-10">
+          <tr><td><label for = "concavity_mean">Concavity Mean:</label></td>
+            <td>
+          <span>
+          <input  class="form-control" type="text" name="concavity_mean" placeholder="Value range: 0.00 - 0.43" required="required" />
+        </span>
+      </td></tr>
+        </div>
+      </div>
+      
+      <div class="form-group">
+        <div class="col-sm-10">
+        <tr><td><label for = "area_se">Area SE:</label></td>
+          <td>
+          <span>
+          <input  class="form-control" type="text" name="area_se" placeholder="Value range: 6.80 - 542.20" required="required" />
+          </span>
+        </td></tr>
+        </div>
+      </div>
+      
+      <div class="form-group">
+        <div class="col-sm-10">
+          <tr><td><label for = "area_worst">Area Worst:</label></td>
+          <td>
+          <span>
+          <input  class="form-control" type="text" name="area_worst" placeholder="Value range: 186.0-4254.0" required="required" />
+          </span>
+        </td></tr>
+        </div>
+      </div>
+      
+      <div class="form-group">
+        <div class="col-sm-10">
+          <tr><td><label for = "concave points_worst">Concave Points Worst:</label></td>
+            <td>
+          <span>
+          <input  class="form-control" type="text" name="concave points_worst" placeholder="Value range: 0.0-0.291" required="required" />
+          </span>
+        </td></tr>
+        </div>
+      </div>
+      
+      <div class="form-group">
+        <div class="col-sm-10">
+          <tr><td><label for = "smoothness_worst">Smoothness Worst:</label></td>
+            <td>
+          <span>
+          <input  class="form-control" type="text" name="smoothness_worst" placeholder="Value range: 0.07 - 0.22" required="required" />
+          </span>
+        </td></tr>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <div class="col-sm-10">
+          <tr><td><label for = "concavity_worst">Concavity Worst:</label></td>
+          <td>
+          <span>
+          <input  class="form-control" type="text" name="concavity_worst" placeholder="Value range: 0.00 - 1.25" required="required" />
+          </span>
+        </td></tr>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <div class="col-sm-10">
+          <tr><td><label for = "symmetry_worst">Symmetry Worst:</label></td>
+            <td>
+          <span>
+          <input  class="form-control" type="text" name="symmetry_worst" placeholder="Value range: 0.16 - 0.66" required="required" />
+          </span>
+        </td></tr>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <div class="col-sm-10">
+          <tr><td><label for = "perimeter_worst">Perimeter Worst:</label></td>
+            <td>
+          <span>
+          <input  class="form-control" type="text" name="perimeter_worst" placeholder="Value range: 50.41-251.2" size="5" required="required"/>
+          </span>
+        </td></tr>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <div class="col-sm-10">
+          <tr><td><label for = "texture_worst">Texture Worst:</label></td>
+            <td>
+          <span>
+          <input  class="form-control" type="text" name="texture_worst" placeholder="Value range: 12.02-49.54" size="5" required="required"/>
+          </span>
+        </td></tr>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <div class="col-sm-10">
+          <tr><td><label for = "radius_worst">Radius Worst:</label></td>
+            <td>
+          <span>
+          <input  class="form-control" type="text" name="radius_worst" placeholder="Value range: 0.06 - 0.21" size="5" required="required"/>
+          </span>
+        </td></tr>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <div class="col-sm-10">
+          <tr><td><label for = "concave points_mean">Concave Points Mean:</label></td>
+            <td>
+          <span>
+          <input  class="form-control" type="text" name="concave points_mean" placeholder="Value range: 0.0-0.2012" size="5" required="required"/>
+          </span>
+        </td></tr>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <div class="col-sm-10">
+          <tr><td><label for = "perimeter_mean">Perimeter Mean:</label></td>
+            <td>
+          <span>
+          <input  class="form-control" type="text" name="perimeter_mean" placeholder="Value range: 43.79-188.5" size="5" required="required"/>
+          </span>
+        </td></tr>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <div class="col-sm-10">
+          <tr><td><label for = "radius_mean">Radius Mean:</label></td>
+            <td>
+          <span>
+          <input  class="form-control" type="text" name="radius_mean" placeholder="Value range: 6.981-28.11" size="5" required="required"/>
+          </span>
+        </td></tr>
+        </div>
+      </div>
+
+
+      <div class="form-group">
+        <div class="col-sm-offset-2 col-sm-10">
+         <tr><td colspan="2"><button type="submit" class="btnsub">PREDICT</button></td></tr>
+        </div>
+      </div>
+    </form>
+    <h2 class="result"></h2>
+  </div>
+  </div>
+  </table>
+  </body>
+</html>
+

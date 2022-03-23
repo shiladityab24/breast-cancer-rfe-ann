@@ -1,7 +1,7 @@
 import numpy as np
 from flask import Flask, request, jsonify, render_template
 import pickle
-#from sklearn.preprocessing import StandardScaler
+from sklearn.preprocessing import StandardScaler
 
 app = Flask(__name__,static_url_path='/static')
 model = pickle.load(open('model.pkl', 'rb'))

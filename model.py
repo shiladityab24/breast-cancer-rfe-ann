@@ -64,7 +64,7 @@ print("Confusion Matrix : \n\n" , confusion_matrix(y_pred,y_test))
 print("Classification Report : \n\n" , classification_report(y_pred,y_test),"\n")
 
 
-pickle.dump(clf_lr, open('model.pkl', 'wb'))
+pickle.dump(classifier, open('model.pkl', 'wb'))
 pickle.dump(scaler, open('scaler.pkl', 'wb'))
 
 model = pickle.load(open('model.pkl', 'rb'))

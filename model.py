@@ -38,7 +38,7 @@ scaler = StandardScaler()
 x_train = scaler.fit_transform(X_train)
 x_test = scaler.transform(X_test)
 
-
+from sklearn.linear_model import LogisticRegression
 ##
 #import keras
 #from keras.models import Sequential

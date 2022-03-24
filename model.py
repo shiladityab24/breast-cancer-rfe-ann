@@ -24,7 +24,7 @@ X = df[['radius_mean', 'texture_mean', 'perimeter_mean', 'area_mean',
        'texture_worst', 'perimeter_worst', 'area_worst', 'smoothness_worst',
        'concavity_worst', 'concave points_worst', 'symmetry_worst']]
 y = df['diagnosis']
-'''
+
 from sklearn.model_selection import train_test_split
 
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size= 0.3, random_state=0)
@@ -125,3 +125,4 @@ pickle.dump(scaler, open('scaler.pkl', 'wb'))
 
 model = pickle.load(open('model.pkl', 'rb'))
 print(model)
+'''

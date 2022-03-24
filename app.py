@@ -29,14 +29,7 @@ def predict():
        'compactness_worst', 'concavity_worst', 'concave points_worst',
        'symmetry_worst', 'fractal_dimension_worst', 'Unnamed: 32']
     df = pd.DataFrame(final_features, columns=features_name)
-    prediction = model.predict(df)
-    y_probabilities_test = model.predict_proba(df)
-    y_prob_success = y_probabilities_test[:, 1]
-    print("final features",final_features)
-    print("prediction:",prediction)
-    output = round(prediction[0], 2)
-    y_prob=round(y_prob_success[0], 3)
-    print(output)
+    output = model.predict(df)
 
     if output == 0:
         return render_template('index.html', prediction_text='THE PATIENT IS MORE LIKELY TO HAVE A BENIGN CANCER WITH PROBABILITY VALUE  {}'.format(y_prob))
